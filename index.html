@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ludercas Bio</title>
+
+    <!-- Thêm favicon từ link hình ảnh -->
+    <link rel="icon" type="image/png" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfaUFLlYvIrFSpHkSgoIQ9bA6iLEjkR7Ex7Q&s" />
+    <!-- Hoặc sử dụng .ico -->
+    <!-- <link rel="icon" type="image/x-icon" href="https://example.com/path/to/favicon.ico"> -->
+
+    <meta content="Links to my various profiles online" name="description" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+
+    <!-- Các style và mã khác -->
+</head>
+
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Josefin Sans", "Arial", sans-serif;
+            overflow: hidden;
+        }
+
+        /* Nền chính */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://wallpapers.com/images/featured/miku-nakano-h9l1l1gmrv07fpmf.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: blur(8px);
+            z-index: -1;
+        }
+
+        /* Các phần tử phía trên nền */
+        .content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: white;
+        }
+
+        .profile-photo {
+            border-radius: 100%;
+            width: 120px;
+        }
+
+        h1, p {
+            color: white;
+        }
+
+        .link-tree {
+            list-style: none;
+            padding: 0;
+            font-size: 20px;
+        }
+
+        .link-tree > li {
+            margin: 12px 0;
+        }
+
+        .link-tree > li a {
+            color: #ffffff;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 6px;
+            padding: 12px;
+            text-decoration: none;
+            max-width: 360px;
+            width: 90%;
+            display: block;
+            margin: 0 auto;
+        } 
+
+        .link-tree > li:nth-child(1) a { background: #B9D2DF; }
+        .link-tree > li:nth-child(2) a { background: #9CC0D3; }
+        .link-tree > li:nth-child(3) a { background: #659BB8; }
+        .link-tree > li:nth-child(4) a { background: #4D88A8; }
+
+        .link-tree > li a:hover, .link-tree > li a:focus {
+            color: white;
+            background: #000000;
+        }
+
+        /* Music Player (Top Left) */
+        .music-player {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            display: flex;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 10px;
+            color: white;
+        }
+
+        .cd-gif {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            display: inline-block;
+        }
+
+        .btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            cursor: pointer;
+            border-radius: 50%;
+            margin-left: 5px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        /* Nút Play */
+        .play-btn {
+            background-image: url('https://png.pngtree.com/png-clipart/20190619/original/pngtree-vector-play-icon-png-image_4013500.jpg');
+        }
+
+        /* Nút Stop */
+        .stop-btn {
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQX6K-JUh7qd4SxI7zXwXAGeKiv2wJezBNueQ&s');
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- Nền blur -->
+    <div class="background"></div>
+
+    <div class="content">
+        <img class="profile-photo" src="./images.jpg" alt="Ludercas Bio🌺" />
+
+        <h1>My Profile</h1>
+        <p>Gamer, Scripter, Blogger, TikToker, Developer</p>
+
+        <ul class="link-tree">
+            <li><a href="https://www.facebook.com/le.quan.410607/">My Facebook Personal Page</a></li>
+            <li><a href="https://github.com/ngthzuan">My GITHUB Account</a></li>
+            <li><a href="https://zalo.me/0559927013">My Zalo Account</a></li>
+            <li><a href="https://www.youtube.com/@ngthzuan">My Youtube Account</a></li>
+        </ul>
+
+        <p>love u :3 ✨</p>
+
+        <!-- Music Player (Fixed Top Left) -->
+        <div class="music-player">
+            <img class="cd-gif" id="cd-gif" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8vW7K_w7SaBNbK5-jcOzCtdKpMRyR9wNMIw&s" alt="Playing">
+            <div>
+                <p style="margin: 0;"> Tobu [Higher]</p>
+                <button class="btn play-btn" id="playBtn" onclick="toggleMusic()"></button> <!-- Nút Play/Stop -->
+            </div>
+        </div>
+
+        <audio id="bg-music" src="1.mp3"></audio>
+
+    </div>
+
+    <script>
+        const audio = document.getElementById("bg-music");
+        const playBtn = document.getElementById("playBtn");
+        const cdGif = document.getElementById("cd-gif");
+
+        let isPlaying = false; // Biến theo dõi trạng thái nhạc
+
+        function toggleMusic() {
+            if (!isPlaying) {
+                // Nếu nhạc chưa chơi thì chơi nhạc
+                audio.play();
+                isPlaying = true;
+                playBtn.style.backgroundImage = "url('https://www.svgrepo.com/show/425671/stop-music.svg')"; // Đổi thành nút Stop
+                cdGif.style.display = "inline-block"; // Hiện GIF
+            } else {
+                // Nếu nhạc đang chơi thì dừng nhạc
+                audio.pause();
+                audio.currentTime = 0;
+                isPlaying = false;
+                playBtn.style.backgroundImage = "url('https://png.pngtree.com/png-clipart/20190619/original/pngtree-vector-play-icon-png-image_4013500.jpg')"; // Đổi lại thành nút Play
+             
+            }
+        }
+    </script>
+</body>
+</html>
